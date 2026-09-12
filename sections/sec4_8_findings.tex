@@ -27,13 +27,14 @@ the reported metric, or single-case fitting~\cite{kapoor2023leakage}) and are ma
 wherever they appear rather than removed. Counts weight neither sample size nor effect size, the same
 datasets recur (CheXpert, MIMIC-CXR and TCGA run through F1a, F2, F2b and F3a alone), and only
 \Nminvalid{} of the \Ncore{} studies state a patient-, slide- or subject-level split, evaluate on data
-unused for fitting and report seeds, intervals or tests. Where records disagree, the disagreement is
+unused for fitting and report seeds, intervals or tests; taken singly those three are reported by
+67, 47 and 81 studies, and a dictionary's reproducibility by \Nsaestab{} of \Nsae{}. Where records disagree, the disagreement is
 stated rather than averaged.
 
 How well a statement's evidence is safeguarded is a separate question from how much of it there is, and
 no grade combines the two. Fig.~\ref{fig:findings} shows, for each statement, the share of its records
-that report each of five groups of controls, and Table~\ref{tab:vcov} gives the \Vnclasses{} underlying
-classes with what each licenses. A control validates the measurement, not the proposition: two
+that report each of five groups of controls; the supplement lists the \Vnclasses{} underlying classes
+with what each licenses and how many records report it. A control validates the measurement, not the proposition: two
 controlled records are not a replication of a finding, and a share is comparable within a class, never
 across classes. The map is mostly empty. A permutation null appears in \Vperm{} of \Vpermn{} records
 where a probe could carry one and a randomly initialised encoder in \Vlrn{} of \Vlrnn{}; the control
@@ -42,8 +43,6 @@ task of Hewitt and Liang~\cite{hewitt2019designing} appears in none. A matched c
 records.
 
 \input{tables/tab_statements}
-
-\input{tables/tab_vcov}
 
 The evidence behind the five conclusions of Table~\ref{tab:synthesis} reads as follows.
 
