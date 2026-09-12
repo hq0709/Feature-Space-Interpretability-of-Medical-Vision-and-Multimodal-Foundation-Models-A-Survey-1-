@@ -38,38 +38,31 @@ decodability in every case but one prototype design (\S\ref{sec:intrinsic}).
 % \FloatBarrier  % dropped: forced under-full float pages
 \begin{table*}[!tbp]
 \centering\small
-\caption{Boundary cases. A study's family follows the claim it makes, not the algorithm it runs, so
-one method is assigned differently depending on what it is used to claim. A parenthesised family is
-recorded as secondary in the coding.}
+\caption{Boundary cases. A study's family follows the claim it makes, not the algorithm it runs. The
+upper block holds the four methods that are assigned differently depending on the claim, with the two
+readings side by side; the lower block holds the methods with a single assignment. Section numbers give
+where each family is reviewed, and a family in square brackets is recorded as secondary in the coding.}
 \label{tab:boundary}
-\setlength\tabcolsep{4pt}\begin{tabular}{@{}L{4.3cm}L{6.1cm}L{4.4cm}@{}}
+\setlength\tabcolsep{5pt}\begin{tabular}{@{}L{3.5cm} L{6.0cm} L{6.0cm}@{}}
 \toprule
-Method & Claim the study makes & Family \\
+Method & If the study claims $\rightarrow$ family & If it instead claims $\rightarrow$ family \\
 \midrule
-\multicolumn{3}{@{}l}{\emph{One method, two claims}} \\
-\multirow{2}{4.3cm}{PCA, ICA or NMF of embeddings}
- & directions are interpretable units, named afterwards & Discovery (\S\ref{sec:discovery}); Geometry \\
- & effective rank or intrinsic dimension summarises the space & Geometry (\S\ref{sec:geometry}) \\
+\multicolumn{3}{@{}l}{\emph{Two readings of one method}} \\
+PCA, ICA or NMF & units are named afterwards $\rightarrow$ Discovery (\S\ref{sec:discovery})~[Geometry] & the space is summarised, no unit interpreted $\rightarrow$ Geometry (\S\ref{sec:geometry}) \\
 \addlinespace
-\multirow{2}{4.3cm}{Representational or centred-kernel similarity (RSA, CKA)}
- & an external concept is decoded through the similarity structure & Decoding (\S\ref{sec:decoding}); Geometry \\
- & cross-model structure only, no concept labels & Geometry \\
+RSA or CKA & a labelled concept is decoded through the similarity structure $\rightarrow$ Decoding (\S\ref{sec:decoding})~[Geometry] & structure is compared across models only $\rightarrow$ Geometry \\
 \addlinespace
-\multirow{2}{4.3cm}{Concept erasure (INLP, LEACE)}
- & the effect on behaviour is the claim & Intervention (\S\ref{sec:intervention}); Decoding \\
- & decodability only, with no behavioural end-point & Decoding \\
+Concept erasure & behaviour is measured after the erasure $\rightarrow$ Intervention (\S\ref{sec:intervention})~[Decoding] & only decodability is measured $\rightarrow$ Decoding \\
 \addlinespace
-\multirow{2}{4.3cm}{Attention over image tokens}
- & the weights are read as a component-level observation & Tracing (\S\ref{sec:tracing}) \\
- & tokens or heads are knocked out & Intervention; Tracing \\
+Attention over tokens & the weights are read $\rightarrow$ Tracing (\S\ref{sec:tracing}) & tokens or heads are removed $\rightarrow$ Intervention~[Tracing] \\
 \midrule
 \multicolumn{3}{@{}l}{\emph{One assignment}} \\
-Network dissection against a labelled concept set & units are scored against supplied concepts & Decoding; Discovery \\
-Sparse-autoencoder features that are then steered & two claims, so two rows and two evidence tags & Discovery and Intervention \\
-Post-hoc concept bottleneck on a frozen encoder & concept-layer decodability; the intrinsic-design tag records the model property (\S\ref{sec:intrinsic}) & Decoding \\
-Logit or tuned lens on decoder states & observational localisation across layers & Tracing \\
-Post-hoc operation on stored embeddings with a downstream end-point & the stored representation is changed and re-evaluated & Intervention (inventory F9b); Geometry or Decoding \\
-Saliency map used to test a representation-level claim & a readout-level instrument, not a feature-space method & Evaluation (\S\ref{sec:evaluation}) \\
+Network dissection & \multicolumn{2}{@{}L{12.3cm}@{}}{units are scored against a supplied concept set $\rightarrow$ Decoding~[Discovery]} \\
+Dictionary $+$ steering & \multicolumn{2}{@{}L{12.3cm}@{}}{two claims, so two rows and two evidence tags $\rightarrow$ Discovery \emph{and} Intervention} \\
+Post-hoc bottleneck & \multicolumn{2}{@{}L{12.3cm}@{}}{concept-layer decodability on a frozen encoder $\rightarrow$ Decoding, with the intrinsic-design tag (\S\ref{sec:intrinsic})} \\
+Logit or tuned lens & \multicolumn{2}{@{}L{12.3cm}@{}}{information is localised across decoder layers, without intervening $\rightarrow$ Tracing} \\
+Embedding operation & \multicolumn{2}{@{}L{12.3cm}@{}}{a stored embedding is whitened, harmonised, projected or unlearned, then re-evaluated $\rightarrow$ Intervention, inventory F9b~[Geometry or Decoding]} \\
+Saliency map & \multicolumn{2}{@{}L{12.3cm}@{}}{a readout-level instrument is used to test a representation-level claim $\rightarrow$ Evaluation (\S\ref{sec:evaluation})} \\
 \bottomrule
 \end{tabular}
 \end{table*}
