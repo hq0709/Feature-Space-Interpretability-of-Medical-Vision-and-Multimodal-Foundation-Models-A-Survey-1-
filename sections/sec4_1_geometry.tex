@@ -62,8 +62,9 @@ disease~\cite{mishra2025comparing}.
 
 The largest medical study examines 18 image and 7 text encoders across five modalities in an
 objective-stratified training matrix~\cite{tayebiarasteh2026self}. Convergence is modest and groups by
-objective rather than scale: matched self-supervised encoders align most (40.4\% on chest radiography),
-label-supervised ones less (21.1\%) and image--text ones least (3.3\%), and no image encoder aligns with a
+objective rather than scale: by mutual nearest-neighbour overlap on chest radiography, matched
+self-supervised encoders align most (40.4\%), label-supervised ones less
+(21.1\%) and image--text ones least (3.3\%), and no image encoder aligns with a
 clinical text encoder, although linear classifiers transfer at about 85\%. Across 22 encoders and 20
 datasets, chance-calibrated nearest-neighbour discordance puts blind sets above a hypergeometric null for
 almost every pair of medical datasets, against about half of natural-image
@@ -87,9 +88,12 @@ calibration while preserving discrimination~\cite{thiringer2026scanner}, and a c
 frozen embeddings reduces scanner clustering~\cite{carloni2025pathology} (\S\ref{sec:intervention}).
 
 Pathology provenance is recoverable at high accuracy. Source hospital is decodable from ten encoders at
-AUC 0.82--0.99, site above 0.95 after stain normalisation, scanner from slide embeddings above 0.99, and
-14--55\% of a patch embedding's neighbours reflect the centre rather than the
-biology~\cite{zhang2025hospital,murchan2024deep,kmen2026robust,jung2026foundation,shafique2026investigating,saueressig2025histology,gustafsson2024evaluating,esbri2025benchmarking}.
+AUC 0.82--0.99~\cite{zhang2025hospital}, site above 0.95 even after stain
+normalisation~\cite{kmen2026robust}, and scanner from slide embeddings above
+0.99~\cite{murchan2024deep}; between 14\% and 55\% of a patch embedding's
+nearest neighbours reflect the centre rather than the
+biology~\cite{saueressig2025histology,gustafsson2024evaluating}. Further audits report the same
+structure~\cite{jung2026foundation,shafique2026investigating,esbri2025benchmarking}.
 The consequence goes beyond detectability. The scanner signature covaries with case mix and inflates an
 external Ki-67 correlation~\cite{jung2026foundation}; stain normalisation, lossy DICOM conversion and
 sequential sectioning all move embeddings and
@@ -125,6 +129,7 @@ an instrument (\S\ref{sec:discovery}).
 Medical encoders converge modestly and group by objective rather than
 scale~\cite{tayebiarasteh2026self}; in one study an affine map aligned them to within about a dozen
 AUROC points of the source encoder~\cite{folco2025semantic}; and they place acquisition variables in
-prominent directions. \Vgeoany{} of the \Vgeon{} geometry records compare their statistic with a
-comparison model or a null. Whether geometry-modifying methods repair what they target is unmeasured,
-because they are assessed only downstream.
+prominent directions. What the family has not settled is whether the objectives that set out to shrink the modality gap
+actually shrink it, since those are assessed on downstream accuracy rather than on the gap itself.
+Across the family, \Vgeoany{} of the \Vgeon{} records compare their statistic with a second model or a
+null.

@@ -37,7 +37,7 @@ against perturbation, occlusion or counterfactual evidence. Where they are teste
 and the result depends on the benchmark and the end-point. Four attribution methods disagree under
 patch deletion and insertion across 17 RETFound models, with gradient-weighted rollout best in 11 of
 17~\cite{bors2026benchmarking}, and the internal attributions of six vision--language models miss the
-counterfactually verified evidence region on chest radiographs, with a rollout IoU of 2.7 against 39.2
+counterfactually verified evidence region on chest radiographs, with a rollout IoU of 2.7\% against 39.2\%
 for the best gradient method~\cite{xiong2026rethinking}. Attention maps sometimes anti-correlate with
 occlusion importance~\cite{sadanandan2026attention}, lose to perturbation and relevance-propagation
 explanations~\cite{idaji2026beyond}, enrich for pathway rather than gene
@@ -61,7 +61,7 @@ these token-level results transfer only where the projector preserves patch corr
 
 \subsubsection{Encoder tokens, aggregators and training-data attribution}
 
-Three observations bear on the encoders of Table~\ref{tab:models}, none of them a core claim. The
+The encoders of Table~\ref{tab:models} carry three further hazards, none of them a core claim. The
 high-norm artefact tokens of vision transformers~\cite{darcet2023vision} are unmeasured in DINOv2-recipe
 models such as RAD-DINO, UNI and Prov-GigaPath, where they would dominate the patch norms and attention
 that probes read. Self-supervised pathology encoders develop heads that attend to morphological
@@ -84,8 +84,6 @@ risk~\cite{tayebiarasteh2026crossmodal}.
 
 Tracing shows where information sits and how unevenly it is attended, not that the output uses it; in
 language models, the layer that causal tracing singles out is not the layer at which editing works
-best~\cite{hase2023does}. \Vtrany{} of the \Vtrn{} records \emph{test} their map, by occlusion,
-perturbation, patching or counterfactual evidence, and the test corroborates the map in some and refutes
-it in others. The medical records that test their maps find them unreliable or method-dependent, and
-image use weak. Localisation remains a hypothesis, and artefact tokens threaten the patch-level
-analyses reviewed here.
+best~\cite{hase2023does}. Of the \Vtrn{} records, \Vtrany{} put their map to a test, and those tests return it unreliable or
+method-dependent and the image contribution weak. Artefact tokens are a further hazard for the
+patch-level analyses reviewed here.
