@@ -1,0 +1,173 @@
+\begin{strip}
+\centering
+\includegraphics[width=0.95\linewidth]{figures/fig5.png}
+\captionof{figure}{From what is encoded to what is used. Observational evidence (structure, decodability,
+discovered features, localisation) characterises $z_\lambda(x)$ and shows availability, not use. Use
+requires an intervention $z_\lambda\to\tilde z_\lambda$ with a pre-specified behavioural end-point
+$\Delta B$, and the interventional evidence then climbs three rungs: \emph{causal sensitivity}
+($\Delta B\neq 0$ on held-out inputs), \emph{direction-selective sensitivity} (the effect of
+$\alpha v_c$ exceeds matched random and unrelated-concept controls) and \emph{concept-specific causal
+contribution}, which needs semantic agreement, hard negatives, an intervention within the empirical
+activation distribution and, finally, an identification design (\emph{Formal view}). No reviewed
+medical study reaches the top rung.}
+\label{fig:families}
+\end{strip}
+
+\section{What counts as evidence}
+\label{sec:evidence}
+
+Fig.~\ref{fig:families} draws the ladder of evidence from observation to concept-specific causal
+contribution that the formal view below defines.
+
+\subsection{Two questions}
+\label{sec:two-questions}
+
+The first question, \emph{what does the representation
+encode?}, is answered observationally: by fitting $g$, computing similarities, decomposing $z_\lambda$ or
+locating information along the path. The second, \emph{what does the model use?}, requires an
+intervention on $z_\lambda$ and an observed change in $B$. This distinction follows the first two levels
+of the causal hierarchy~\cite{bareinboim2022pearl}. The two questions are not interchangeable. A concept can be linearly
+decodable from a representation that the output never uses, so probing accuracy overstates use, as
+control tasks, amnesic probing, concept erasure and direct tests of task relevance established for
+language
+models~\cite{hewitt2019designing,elazar2020amnesic,ravfogel2020null,belrose2023leace,ravichander2021probing,ivanova2021probing}.
+The converse error also exists: an uncontrolled intervention that changes behaviour shows that the
+output is sensitive to the representation, not that the direction means what it was named. The
+taxonomy of \S\ref{sec:taxonomy} tags the two kinds of evidence apart.
+
+\subsection{Formal view}
+\label{sec:formal}
+
+In the notation of \S\ref{sec:prelim}, each family characterises a functional of
+the representation $z_\lambda(x)$ at a locus $\lambda$; the families differ in the functional and in
+whether the forward pass is left intact. For a multimodal model the state also depends on the prompt
+$t$, the token position $p$ and, for generated end-points, the decoding policy, so $z_\lambda(x)$
+abbreviates $z_\lambda(x,t,p)$ and $B(x)$ abbreviates $B(x,t)$ under a fixed decoding rule. A claim
+about a decoder or connector state is therefore conditional on the prompt and position at which it was
+measured, which is why locus and readout are coded separately. Structural analysis reports a statistic
+$\Phi(\{z_\lambda(x_i)\}_{i=1}^{N})$ of the embedding distribution, unconditionally or stratified by
+metadata such as scanner or site; it decodes no concept. Decoding fits, within a decoder class
+$\mathcal{G}$ and on a training set $\mathcal{T}$, the map
+\begin{equation}
+\hat g=\arg\min_{g\in\mathcal G}\ \tfrac{1}{|\mathcal T|}\textstyle\sum_{i\in\mathcal T}\ell\big(g(z_\lambda(x_i)),\,c(x_i)\big)
+\label{eq:probe}
+\end{equation}
+and reports the performance of $\hat g$ on held-out examples, which depends on $\mathcal G$ as much as
+on $z_\lambda$. Prompt-similarity scoring and labelled representational similarity recover $c$ without
+a fitted $\hat g$, and are grouped with decoding by the claim they license, the second as its weakest
+member (\S\ref{sec:taxonomy}). Discovery fits a dictionary $D$ and sparse codes $a(x)$ with
+$z_\lambda(x)\approx D\,a(x)$, then names the columns. Tracing reports functionals of the unchanged
+forward pass indexed by layer, position or component, such as layer-wise decoding of $h^{(\ell)}$ or the
+attention mass on visual tokens. Intervention replaces $z_\lambda$ by $\tilde z_\lambda$ and reports the
+behavioural effect
+\begin{equation}
+\Delta B=B\big(x;\,z_\lambda\!\leftarrow\!\tilde z_\lambda\big)-B(x),
+\label{eq:effect}
+\end{equation}
+with $\overline{\Delta B}=\mathbb{E}_x[\Delta B(x)]$ its expectation over inputs and, for generated
+text, over the decoding policy; the reviewed studies report sample averages of it.
+Equation~(\ref{eq:effect}) describes interventions inside the forward pass. Post-hoc transformations of
+stored embeddings, parameter editing and unlearning have estimands and end-points of their own
+(\S\ref{sec:intervention}). For a steering intervention $\tilde z_\lambda=z_\lambda+\alpha v_c$ along a
+direction built for concept $c$, the coding records whether the study compares $\Delta B(\alpha v_c)$
+with a matched control. Exceeding matched controls establishes selective sensitivity to the direction,
+not semantic validity, which depends on how $v_c$ was obtained. Erasure carries part of its control in
+its construction, an affine map that removes the linear predictability of $c$~\cite{belrose2023leace},
+but attributing a behavioural change to it still requires a sham or rank-matched transformation and
+checks that correlated concepts and off-target performance survive. The paired probe-and-intervention
+design that the medical corpus lacks (\S\ref{sec:intervention}, \S\ref{sec:future}) follows directly
+from the two equations: $v_c$ is the normal of a probe fitted by~(\ref{eq:probe}) or a dictionary
+column that decodes $c$, and~(\ref{eq:effect}) is reported against matched control directions at the
+same locus and end-point.
+
+\subsection{Three causal claims}
+\label{sec:causal-claims}
+
+Three claims of increasing strength follow from~(\ref{eq:effect}).
+\emph{Causal sensitivity} means that the output changes when $z_\lambda$ is changed; any intervention
+whose effect exceeds its uncertainty over inputs establishes it. \emph{Direction-selective sensitivity}
+means that the effect of $v_c$ exceeds that of matched controls. \emph{Concept-specific causal
+contribution} means that the effect is attributable to the model's representation of $c$ rather than to
+a correlated direction. Agreement among independently constructed directions, a correlated-concept hard
+negative and an intervention that stays within the empirical activation distribution are necessary for
+the third claim, but they do not identify the contribution; identification takes a mediation
+design~\cite{pearl2001direct,imai2010mediation}, a causal-concept effect estimated under an
+intervention on the concept itself~\cite{goyal2019cace}, or a causal-abstraction mapping between concept
+and representation~\cite{geiger2021causal,geiger2023causal}. The corpus contains interventions that
+establish causal sensitivity and one record that meets the direction-selective criterion, but no medical
+study establishes a concept-specific causal contribution. The distinction between structure a representation exhibits, structure an intervention
+can move and factors that are causally meaningful is the one Sch\"olkopf \emph{et
+al.}~\cite{scholkopf2021causal} draw for representation learning in general. Table~\ref{tab:families}
+(\S\ref{sec:comparison}) restates this view family by family.
+
+\subsection{Properties evaluated}
+\label{sec:eval-what}
+
+Five properties recur, and they are not interchangeable.
+
+\textbf{Faithfulness and probe validity.} A faithful artefact reflects the computation the model
+performs~\cite{jacovi2020towards}. For a probe, a direction or a feature this means connecting the
+artefact to the output through an intervention (\S\ref{sec:intervention}); how a removal procedure is
+chosen already reorders attribution methods~\cite{hooker2019benchmark}, and fidelity and sensitivity
+measures are themselves choices~\cite{yeh2019fidelity}. Probe validity is the weaker property that the
+probe's performance reflects the representation rather than the decoder's own work. It is tested by
+control-task selectivity, description-length probes or shuffled
+labels~\cite{hewitt2019designing,voita2020information}, and a randomly initialised encoder calibrates what
+the architecture alone affords. Perturbation and model randomisation test attribution and
+attention~\cite{adebayo2018sanity}, tests that medical saliency and attention maps can
+fail~\cite{arun2021trustworthiness,sadanandan2026attention}.
+
+\textbf{Concept validity.} Concepts from label schemas, reports or language models may be invalid.
+Evaluation covers agreement with expert annotation, inter-rater reliability, whether the concept set is
+complete enough to account for the prediction~\cite{yeh2019completeness}, the coverage of the clinical
+vocabulary and, for post-hoc names, agreement between descriptions and reports as judged by a frozen
+medical language model~\cite{haque2026medconcept}. Plausibility, whether a clinician finds an
+explanation reasonable, is a property of the reader and is independent of
+faithfulness~\cite{jacovi2020towards,miller2017explanation}.
+
+\textbf{Stability.} Discovered features and learned directions depend on seeds, dictionary size, training
+subsets and model versions; reproducibility across seeds, agreement of directions across checkpoints and
+consistency of probing across splits measure it (\S\ref{sec:discovery}).
+
+\textbf{Specificity of interventions.} An intervention is evaluated against the three causal claims of
+\S\ref{sec:causal-claims} (\S\ref{sec:intervention}).
+
+\textbf{Clinical utility.} The four properties above are functionally grounded; utility is the
+application-grounded end of the same scale~\cite{doshivelez2017towards}. An artefact has clinical utility
+when it helps a clinician or a developer decide better, measured by reader studies, task-level end-points
+such as shortcut detection or error correction, and downstream metrics after an intervention. The
+contextual literature includes one dermatology reader study (\S\ref{sec:eval-bench}), and systematic
+reviews find mixed, sometimes bidirectional, effects of explanations on trust and
+performance~\cite{rosenbacke2024how}.
+
+\textbf{How often the five are reported.} Unevenly; Table~\ref{tab:vcov} gives the count for every class
+of check. Three gaps stand out. Probe validity is almost never tested: a permuted-label null or chance
+calibration appears in \Nprobectrl{} of the \Ndecni{} non-intrinsic decoding studies and a randomly
+initialised encoder in \Nproberand{}, and no study runs a control task. Stability is reported by
+\Nsaestab{} of the \Nsae{} dictionary studies, and the cross-seed identity of features or names by none;
+nor does any decoding, geometry or intervention study establish it for a probe or a direction. And no
+core study assesses clinical utility with a reader study. Clinician-facing explanation has been argued to
+fail at exactly this step, where an artefact that looks reasonable is taken for one that is
+faithful~\cite{ghassemi2021falsehope}. The corpus therefore rests largely on uncontrolled decodability
+and on feature names that are unvalidated or validated once (\S\ref{sec:findings}).
+
+\FloatBarrier
+\section{Methods and their medical evidence}
+\label{sec:methods}
+
+Each subsection below defines a family, reviews representative studies, tabulates the medical evidence
+and states what the family's claims can and cannot support. A study with claims in two families appears
+in both. ``Medical'' here means analysing a medical foundation model (\S\ref{sec:models}); general-domain
+studies are cited where they supply a method or a mechanism that the medical work uses.
+Table~\ref{tab:families} summarises what each family shows and the tests that strengthen it. A core
+study whose quality assessment records a defect that undermines its representation-level result
+(\S\ref{sec:findings}) is marked $^{\dagger}$ where it is cited singly in this section, so that its
+result is read with that qualification.
+
+\input{sections/sec4_1_geometry}
+\input{sections/sec4_2_decoding}
+\input{sections/sec4_3_discovery}
+\input{sections/sec4_4_tracing}
+\input{sections/sec4_5_intervention}
+\input{sections/sec4_6_intrinsic}
+\input{sections/sec4_7_comparison}

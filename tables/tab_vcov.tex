@@ -1,0 +1,37 @@
+\begin{table}[!tb]
+\centering\footnotesize\setlength\tabcolsep{3pt}\renewcommand{\arraystretch}{1.12}
+\caption{The \Vnclasses{} classes of control, grouped as in Fig.~\ref{fig:findings}, the designs each applies to, and how many records whose design can carry it report it ($k/n$; $k_{\text{all}}$--$k/n$ where the control covers only part of some records\textquotesingle{} outcomes). No class is a prerequisite for a design\textquotesingle{}s base reading and none is summed with another.}
+\label{tab:vcov}
+\begin{tabular}{@{}L{3.4cm}L{2.4cm}R{1.35cm}@{}}
+\toprule
+Class & Applies to & $k/n$ \\
+\midrule
+\multicolumn{3}{@{}l}{\emph{Chance calibration}} \\
+Sample-level permutation control (\emph{perm}) & fitted probes; intrinsic & 3/69 \\
+Reference-distribution calibration (\emph{ncal}) & decoding; intrinsic; geometry & 4--5/110 \\
+Randomized control task (\emph{ctrl}) & fitted probes; intrinsic & 0 \\
+\addlinespace[3pt]
+\multicolumn{3}{@{}l}{\emph{Attribution to training}} \\
+Learned-representation attribution (\emph{lrn}) & decoding; intrinsic; geometry; tracing & 3--5/121 \\
+Planted ground truth (\emph{plant}) & decoding; intrinsic & 3--4/80 \\
+Matched-object control (\emph{mobj}) & decoding; intrinsic & 1/80 \\
+\addlinespace[3pt]
+\multicolumn{3}{@{}l}{\emph{Comparison model and semantic validation}} \\
+Comparison model (\emph{comp}) & geometry & 13--16/30 \\
+Semantic validation (\emph{sem}) & discovery & 15--18/25 \\
+\addlinespace[3pt]
+\multicolumn{3}{@{}l}{\emph{Perturbation test}} \\
+Input-space corroboration (\emph{inp}) & tracing & 5--6/11 \\
+Internal-component perturbation (\emph{int}) & tracing; intrinsic & 2/24 \\
+\addlinespace[3pt]
+\multicolumn{3}{@{}l}{\emph{Matched control}} \\
+Intervention specificity (\emph{spc}) & targeted interventions & 2--3/8 (13 n/a) \\
+\midrule
+\multicolumn{3}{@{}l}{\emph{Study-level reporting (share of studies)}} \\
+\multicolumn{2}{@{}l}{patient-, slide- or subject-level split stated} & 67/135 \\
+\multicolumn{2}{@{}l}{evaluation on data unused for fitting} & 47/132 \\
+\multicolumn{2}{@{}l}{seeds, intervals or tests reported} & 81/133 \\
+\multicolumn{2}{@{}l}{reproducibility check of a dictionary} & 6/18 \\
+\bottomrule
+\end{tabular}
+\end{table}

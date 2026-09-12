@@ -1,0 +1,13 @@
+Medical foundation models are reused as frozen feature extractors, zero-shot classifiers and report
+generators, so what their internal representations encode, and what the models actually use, matters
+independently of any downstream head. This survey reviews the work that measures or intervenes on those
+representations in medical vision encoders, image--text models and multimodal language models. It
+organises the methods by family and by the point along the model at which they read the representation,
+and it separates two questions that the literature often runs together: whether a concept can be decoded
+from a representation, and whether the model uses it. Across \Ncore{} studies, clinical findings,
+anatomy, demographic attributes and acquisition conditions are decodable from frozen encoders in four to seven modalities, but controls on probe validity are rare and no study shows that a model's output
+depends on a named concept. The site and scanner an image comes from is the property recovered most
+consistently, and whether removing it improves generalisation is untested. Comparisons of medical with
+general pre-training never hold data, objective, architecture and scale fixed, so the effect of medical
+pre-training remains unidentified. The survey closes with the experiments that would settle these
+questions.

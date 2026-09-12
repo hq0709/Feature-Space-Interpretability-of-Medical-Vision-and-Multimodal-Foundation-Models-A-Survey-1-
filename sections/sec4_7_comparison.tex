@@ -1,0 +1,77 @@
+\subsection{Comparison across families}
+\label{sec:comparison}
+
+\begin{table*}[!tb]
+\centering\footnotesize\setlength\tabcolsep{4pt}\renewcommand{\arraystretch}{1.12}
+\caption{What each method family shows on its own, what it does not, the tests that license a stronger
+reading (none a prerequisite; Table~\ref{tab:vcov}), and where this corpus stops, with $k/n$ over the family's own records (the cross-family
+counts are Table~\ref{tab:vcov}). Geometry is task-linked geometry only (\S\ref{sec:method}); the sub-types of decoding and intervention are discussed in \S\ref{sec:decoding} and \S\ref{sec:intervention}.}
+\label{tab:families}
+\begin{tabular}{@{}L{2.3cm}L{3.4cm}L{2.8cm}L{3.25cm}L{3.25cm}@{}}
+\toprule
+Family & Shows on its own & Does not show & Stronger reading needs & In this corpus \\
+\midrule
+\textbf{Structural and geometric} (task-linked) & the shape of the space: gap, alignment, effective rank, similarity & what any direction means; no concept & comparison model; random-initialised or shuffled baseline & comparison model \Vcomp{}/\Vcompn{}; calibration \Vncalgeo{}/\Vncalgeon{} \\
+\addlinespace[3pt]
+\textbf{Supervised concept mapping and decodability} & a concept can be read out of $z_\lambda$ by a decoder (Eq.~\ref{eq:probe}) & that the model uses it & permuted labels; random encoder; control task; fixed decoder class & permutation null \Vpermdec{}/\Vpermdecn{}; random encoder \Vlrndec{}/\Vlrndecn{}; selectivity not yet measurable \\
+\addlinespace[3pt]
+\textbf{Feature decomposition and discovery} & a unit's activation tracks the named content (Eq.~\ref{eq:sae}) & that the unit is stable, complete or used & validated names; cross-seed matching; reconstruction & semantic validation \Vsem{}/\Vsemn{}; cross-seed identity none \\
+\addlinespace[3pt]
+\textbf{Attribution, localisation and tracing} & where information is decodable or attended ($\ell$, $p$, $h$) & that the location is used & occlusion or patching confirmation; random-component comparison & input corroboration \Vinp{}/\Vinpn{}; component perturbation \Vinttr{}/\Vinttrn{} \\
+\addlinespace[3pt]
+\textbf{Representation intervention and control} & the output is sensitive to $z_\lambda$ (Eq.~\ref{eq:effect}) & that the named concept, not a correlated direction, caused the change & matched control directions; equal-size random units; sham transformations & matched control \Vspca{}--\Vspc{}/\Vspcn{}; no dose--response test \\
+\midrule
+\textbf{Intrinsic and concept-aligned designs} (tag) & the label depends on $z_\lambda$ only through the concept layer & that nothing else leaks through & leakage test; random concept projections; concept-layer intervention & concept-layer control \Vintrany{}/\Vintrn{}; leakage rarely measured \\
+\bottomrule
+\end{tabular}
+\end{table*}
+\begin{table*}[!tb]
+\centering\footnotesize\setlength\tabcolsep{2.5pt}\renewcommand{\arraystretch}{1.05}
+\caption{What each family costs and how far this corpus has taken it. \emph{Concept annotation}: whether
+the design needs a concept vocabulary, and how much labelling. \emph{Loci}: where the family has been
+applied to medical models (parentheses: reached only in general-domain work). \emph{Compute}: beyond a
+forward pass. \emph{Readable}: whether a clinician can read the artefact directly. \emph{Base.}: records
+comparing a medical with a general model on the same data. \emph{Multi.}: more than one model or dataset.
+The structural row ($\dagger$) covers task-linked geometry only (\S\ref{sec:method}) and is not comparable
+with the others; the \Nintrinsic{} intrinsic-design records are counted in their analytic family and
+listed again in the tag row.}
+\label{tab:famreq}
+\begin{tabular}{@{}L{2.2cm}L{2.1cm}L{2.0cm}L{1.6cm}L{1.8cm}C{0.7cm}C{0.8cm}C{0.8cm}L{2.8cm}@{}}
+\toprule
+Family & Concept annotation & Loci (medical) & Compute & Readable & 1st yr & Base. & Multi. & Main failure mode \\
+\midrule
+Structural and geometric (task-linked)$^{\dagger}$ & none & Enc, Txt, Joint, Dec, (Conn) & low & no & 2022 & 11 & 29 & geometric quantity read as clinical meaning \\
+Supervised concept mapping and decodability & required; high (labels) & Enc, Joint & low & partly (scores yes, probes no) & 2022 & 31 & 72 & decodability read as use \\
+Feature decomposition and discovery & none or weak (post-hoc naming) & Enc, Dec, (Conn) & high (activations at scale, training) & yes, once named and validated & 2024 & 2 & 14 & unstable features and unvalidated names \\
+Attribution, localisation and tracing & optional; low--moderate & Enc, Joint, Dec, Path, (Pre) & moderate & partly (maps, often unfaithful) & 2022 & 2 & 8 & localisation read as causal confirmation \\
+Representation intervention and control & required for concept-\hspace{0pt}specific claims; moderate (exemplars) & Enc, Joint, Dec, (Txt, Conn) & mod.--high (repeated generation) & indirectly (behaviour change) & 2023 & 5 & 18 & uncontrolled, input-\hspace{0pt}dependent effects \\
+\midrule
+Intrinsic and concept-aligned designs (tag) & required; high & Enc (concept layer), Joint & low--moderate & yes & 2023 & 7 & 13 & leakage; concept invalidity \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+Table~\ref{tab:families} sets out what each family reports and what its artefact licenses;
+Table~\ref{tab:famreq} gives what each costs and how far this corpus has taken it. Decoding is the
+oldest and by far the largest family; discovery is two years old and intervention three. Two asymmetries
+in Table~\ref{tab:famreq} are easily missed. Intervention gives the claims of greatest practical interest
+at the highest cost and with the fewest controlled results, while the cheapest family addresses
+availability, which is often mistaken for use. Readability and validity also pull apart: discovery and
+intrinsic designs return the artefacts a clinician can read, yet they rest on an unvalidated naming or
+leakage step.
+
+\textbf{Combining families.} Three pipelines recur. \emph{Discover, then intervene} uses residual-stream
+dictionary directions for steering or
+patching~\cite{bouzid2025insights,nooralahzadeh2026universal,sadanandan2026mechanistically}, and carries
+the caveats of \S\ref{sec:discovery} into the intervention. \emph{Trace, then intervene} exploits an
+observational localisation through a training-time change, so far only in a general CLIP text tower on
+radiology captions~\cite{abbasi2026layerspecific}. \emph{Decode, then erase, residualise or ablate}
+probes for availability and then tests whether a downstream prediction depends on the
+concept~\cite{kim2026encoding,nooralahzadeh2026sparse,weber2023posthoc}; it answers the shortcut
+question of \S\ref{sec:applications} most directly, and its two core instances that test a downstream
+dependence point in opposite directions, residualisation leaving a refitted finding probe
+unchanged~\cite{kim2026encoding}$^{\dagger}$ while channel knockout collapses a finding's
+score~\cite{nooralahzadeh2026sparse}. Reading one family's result as an answer to another family's
+question is the commonest inferential error in this literature, and the evidence-type tag makes it
+visible.
+

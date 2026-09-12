@@ -1,0 +1,96 @@
+\textbf{Eligibility.} A \emph{core study} (i) analyses or intervenes on an internal representation
+(\S\ref{sec:prelim}) of (ii) an eligible medical vision or vision--language foundation model, or an
+encoder used to assemble one (\S\ref{sec:models}), and (iii) reports a measurement. Three decisions are
+kept apart in the eligibility coding. \emph{Foundation-model status} is the definition of
+\S\ref{sec:models}, operationalised for sampling as pre-training on at least $10^{5}$ images or image--text
+pairs, $10^{3}$ whole slides or $10^{4}$ volumetric scans from more than one anatomical site or finding
+class, and reuse across at least three reported tasks. The three thresholds sit below the smallest
+pre-training corpus of each kind in Table~\ref{tab:models}, so that they exclude task-specific models
+rather than small foundation models. They compare information units that are not equivalent, since an
+image, a slide and a volume differ by orders of magnitude in content, so they are sampling boundaries
+rather than part of the definition, and the conclusions do not depend on them: excluding the six
+borderline studies changes none of the statements of Table~\ref{tab:statements}; excluding also the
+seventeen studies admitted by the volumetric threshold empties the brain-MRI row of the site finding
+(F3c) and narrows the modality span of two others (F2 and F8a$^{\prime\prime}$) without reversing
+either. Medical adaptations of general foundation models qualify, as do their component encoders.
+\emph{Representation access} is whether the study could reach embeddings or activations at all. It is a
+requirement of this review rather than a property of the model, and it biases the corpus towards openly
+released weights, since API-only models enter only through embedding-level analyses and are marked
+borderline. \emph{Claim eligibility} is whether the study makes a representation-level claim about such
+a model. One family carries a stricter version of it: a geometry study enters only
+if it connects its statistic to decodability, retrieval, transfer or shortcut behaviour
+(\S\ref{sec:geometry}). The structural family is therefore reviewed as \emph{task-linked geometry}, and
+purely descriptive or negative geometry results are under-represented here relative to the literature. A
+study enters if at least one analysed model passes the first two decisions and the study passes the
+third; ineligible comparators are named in the evidence tables and support no finding alone.
+General-domain methods, datasets, benchmarks, model papers and surveys are contextual. Output-only and
+input-attribution-only studies are excluded unless the attribution tests a representation-level claim;
+so are standalone clinical language models, non-imaging modalities and task-specific networks. Model and
+training-method papers in which the representation measurement is only instrumental, an attention map
+shown as qualitative evidence or an audit that selects heads for fine-tuning, are contextual, and the
+size of the tracing family depends on this rule (\S\ref{sec:tracing}). Publication status is not a
+criterion: preprints, theses and repository deposits with a retrievable full text are coded like refereed
+papers and counted as preprints. Frozen-feature benchmarks are admitted only when they report a
+representation-level property beyond task accuracy; accuracy leaderboards, and four parameter-editing
+benchmarks that report only output-level reliability, locality and generality, are contextual.
+
+\textbf{Search and screening.} The literature was searched between 15 and 18 August 2026 in Semantic
+Scholar, OpenAlex and arXiv, for work published from January 2018 to the cutoff of 16 August 2026, and
+MEDLINE (PubMed) was searched on 21 August 2026. Each query combined the vocabulary of one method family
+(probing and concept decoding, concept bottlenecks, dictionaries and dissection, attention and
+attribution, steering, patching and editing, embedding geometry, adaptation, evaluation) with
+medical-domain and foundation-model terms, in twelve query groups. The database searches were followed
+by backward and forward citation chaining~\cite{wohlin2014guidelines} in five rounds, seeded from
+\Nmodelseeds{} model papers, among them every model of Table~\ref{tab:models}, and from every included
+study; chaining contributed \Nstagechain{} of the \Ncore{} core studies, whereas the MEDLINE search,
+which indexes few of the preprints, retrieved \pmRecall{} of them and added none. Records were
+de-duplicated across sources by identifier and normalised title. In all, about 13,600 records were
+screened on title and abstract, \Nretained{} were retained for full-text assessment, and \Ncore{} met
+the criteria above as core studies; four of these, whose full text is closed access, were coded from the
+abstract and the openly available figures, tables and supplementary material. The article cites
+\Ncited{} references in all: the core studies and \Ncontext{} contextual references, drawn from the
+retained records and from \Ncitedhand{} documents added by hand (regulatory guidance and technical
+reports that no database returns). Screening and coding were done by one reviewer, so no inter-rater
+agreement is reported; borderline eligibility decisions were recorded as such, and
+the query strings, the counts of every stage and the decision recorded for every screened record are in
+the online supplement.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\linewidth]{fig2_corpus.pdf}
+\caption{The reviewed corpus. (a) Core studies per year of first appearance, by primary method family
+(\Ncore{} studies; cutoff 16 August 2026, so 2026 is partial). (b) The \Nclaims{} records by family
+and locus: the vision encoder is split by sublocus, Succ.\ loci is a probe repeated at successive loci,
+the intervention family is split into interventions inside the forward pass and post-hoc operations,
+and hatched cells contain no record; the interventional records are the twenty-one of the
+causal-intervention family and one decoding record with a counterfactual end-point. (c) Records by
+modality (Other: echocardiography, PET, cytology, endoscopy and mixed-modality retrieval), with records
+spanning modalities counted under each. The structural family is a sample of task-linked geometry
+studies, marked by a dashed outline in (a) and (c), and its size is not comparable
+with the other families. Proportions describe the assembled corpus, not the literature.}
+\label{fig:corpus}
+\end{figure*}
+
+\textbf{Coding.} Two units are used throughout. A \emph{record} is one result of one study: one study,
+one method family, one evidence type and one locus, so that outcomes sharing all four form a single
+record, which may still span several concepts, models, datasets or end-points. A \emph{statement} is a
+cross-study proposition of \S\ref{sec:findings}, and the records that support it are listed under it.
+Each record was coded for its family and sub-group, locus, concept provenance, evidence type, models,
+modality, whether it compares a medical with a general model on the same data, whether it evaluates more
+than one model or dataset, and, for interventional claims, the control used (\S\ref{sec:taxonomy}).
+Every count in this article is a count of records or of studies in this corpus.
+
+\textbf{Where the evidence sits.} The corpus holds \Ncore{} core studies and \Nclaims{} records;
+\Nrecent{} of the studies (\Pctrecent\%) appeared in 2025--2026, and 2026 is a partial year
+(Fig.~\ref{fig:corpus}a). Fig.~\ref{fig:corpus} shows the shape of the corpus. Observational
+claims at the vision encoder and in the projected joint space dominate, pathology and chest radiography
+supply nearly two thirds of the records, and the few interventional claims divide between the decoder
+residual stream and post-hoc operations on stored embeddings. Only one record repeats a probe at
+successive loci~\cite{zhu2026lost} and one is taken at the text encoder~\cite{tayebiarasteh2026self};
+none is taken at the connector output alone or at the pre-readout representation (\S\ref{sec:future}).
+The synthesis is descriptive: no effect is pooled, no certainty is graded, and an empty cell in
+Fig.~\ref{fig:corpus}b means that no study was found, not that none exists. Study quality is described
+by the controls and reporting practices the studies themselves state (\S\ref{sec:findings}); the
+risk-of-bias instruments of prediction modelling (PROBAST and
+PROBAST+AI~\cite{wolff2019probast,moons2025probast}, TRIPOD+AI~\cite{collins2024tripod},
+QUADAS-2~\cite{whiting2011quadas}) are not designed for representation-level claims.
