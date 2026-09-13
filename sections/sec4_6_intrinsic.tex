@@ -67,13 +67,7 @@ annotations cap hard-bottleneck accuracy~\cite{napoles2026concept}, and concept 
 meaningless layer~\cite{han2026loss}. A sparse autoencoder placed before a linear
 bottleneck~\cite{rao2024discover} inherits the instability of discovery (\S\ref{sec:discovery}).
 
-\subsubsection{Summary and discussion}
-
-Intrinsic designs make a concept layer auditable and intervenable. Where the comparison is reported,
-task accuracy is competitive with the same backbone without the concept layer, but accuracy cannot
-show faithfulness, which needs valid concepts and controlled leakage. \Vintrany{} of the
-\Vintrn{} intrinsic-design records report a control on the concept layer: an
+Where the comparison is reported, task accuracy is competitive with the same backbone without the
+concept layer, but accuracy cannot show faithfulness. The two controls the corpus does contain are an
 embedding-randomisation null~\cite{zhang2026regionfm} and the replacement of predicted concepts by
-ground truth~\cite{patricio2025twostep}. A comparison of the same frozen encoder with and without an
-intrinsic head, together with an intervention on $\hat c$ under an expert-validated $g_c$ and measured
-leakage, is rarely reported.
+ground truth~\cite{patricio2025twostep}.

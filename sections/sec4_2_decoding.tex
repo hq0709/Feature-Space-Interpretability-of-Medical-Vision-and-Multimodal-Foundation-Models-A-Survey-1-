@@ -109,12 +109,8 @@ depths without localising~\cite{farquhar2026pretraining,demir2025downstream}, on
 than layer~\cite{muthyala2026frozen}, and the rest probe the final embedding; a frozen-probe benchmark
 of physiological-signal models shows what a complete protocol looks like~\cite{zare2026eeg}.
 
-\subsubsection{Summary and discussion}
-
-Clinical findings, anatomy, demographic attributes and acquisition conditions are all decodable from
-frozen medical encoders. Whether a recoverable attribute influences the output is usually untested: only
+Whether a recoverable attribute influences the output is usually untested. Only
 residualisation~\cite{kim2026encoding}$^{\dagger}$ and channel ablation~\cite{nooralahzadeh2026sparse}
 separate availability from the dependence of a specified downstream readout, and neither tests the
-model's own fixed head. Decodability of a named concept across successive loci of one model, under a
-control, remains unmeasured; the one successive-locus probe reads class labels without one (F8b,
-\S\ref{sec:tracing}).
+model's own fixed head; the one probe run at successive loci reads class labels without a control
+(F8b, \S\ref{sec:tracing}).
