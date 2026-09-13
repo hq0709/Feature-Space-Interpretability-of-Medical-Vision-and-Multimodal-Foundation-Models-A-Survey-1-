@@ -38,33 +38,46 @@ decodability in every case but one prototype design (\S\ref{sec:intrinsic}).
 % \FloatBarrier  % dropped: forced under-full float pages
 \begin{table*}[!tbp]
 \centering\small
-\caption{Boundary cases. A study's family follows the claim it makes, not the algorithm it runs. The
-upper block holds the four methods that are assigned differently depending on the claim, with the two
-readings side by side; the lower block holds the methods with a single assignment. Section numbers give
-where each family is reviewed, and a family in square brackets is recorded as secondary in the coding.}
+\caption{Boundary cases in the assignment of a study to a family.}
 \label{tab:boundary}
-\setlength\tabcolsep{5pt}\begin{tabular}{@{}L{3.5cm} L{6.0cm} L{6.0cm}@{}}
+\setlength\tabcolsep{5pt}\begin{tabular}{@{}L{3.0cm} L{6.1cm} L{3.3cm} L{2.9cm}@{}}
 \toprule
-Method & If the study claims $\rightarrow$ family & If it instead claims $\rightarrow$ family \\
+Method & Claim the study makes & Primary family & Also coded as \\
 \midrule
-\multicolumn{3}{@{}l}{\emph{Two readings of one method}} \\
-PCA, ICA or NMF & units are named afterwards $\rightarrow$ Discovery (\S\ref{sec:discovery})~[Geometry] & the space is summarised, no unit interpreted $\rightarrow$ Geometry (\S\ref{sec:geometry}) \\
+PCA, ICA or NMF & directions are interpretable units, named afterwards & Discovery (\S\ref{sec:discovery}) & Geometry \\
+PCA, ICA or NMF & effective rank or intrinsic dimension summarises the space & Geometry (\S\ref{sec:geometry}) & --- \\
 \addlinespace
-RSA or CKA & a labelled concept is decoded through the similarity structure $\rightarrow$ Decoding (\S\ref{sec:decoding})~[Geometry] & structure is compared across models only $\rightarrow$ Geometry \\
+RSA or CKA & a labelled concept is decoded through the similarity structure & Decoding (\S\ref{sec:decoding}) & Geometry \\
+RSA or CKA & structure is compared across models, with no concept labels & Geometry (\S\ref{sec:geometry}) & --- \\
 \addlinespace
-Concept erasure & behaviour is measured after the erasure $\rightarrow$ Intervention (\S\ref{sec:intervention})~[Decoding] & only decodability is measured $\rightarrow$ Decoding \\
+Concept erasure & behaviour is measured after the erasure & Intervention (\S\ref{sec:intervention}) & Decoding \\
+Concept erasure & only decodability is measured & Decoding (\S\ref{sec:decoding}) & --- \\
 \addlinespace
-Attention over tokens & the weights are read $\rightarrow$ Tracing (\S\ref{sec:tracing}) & tokens or heads are removed $\rightarrow$ Intervention~[Tracing] \\
-\midrule
-\multicolumn{3}{@{}l}{\emph{One assignment}} \\
-Network dissection & \multicolumn{2}{@{}L{12.3cm}@{}}{units are scored against a supplied concept set $\rightarrow$ Decoding~[Discovery]} \\
-Dictionary $+$ steering & \multicolumn{2}{@{}L{12.3cm}@{}}{two claims, so two rows and two evidence tags $\rightarrow$ Discovery \emph{and} Intervention} \\
-Post-hoc bottleneck & \multicolumn{2}{@{}L{12.3cm}@{}}{concept-layer decodability on a frozen encoder $\rightarrow$ Decoding, with the intrinsic-design tag (\S\ref{sec:intrinsic})} \\
-Logit or tuned lens & \multicolumn{2}{@{}L{12.3cm}@{}}{information is localised across decoder layers, without intervening $\rightarrow$ Tracing} \\
-Embedding operation & \multicolumn{2}{@{}L{12.3cm}@{}}{a stored embedding is whitened, harmonised, projected or unlearned, then re-evaluated $\rightarrow$ Intervention, inventory F9b~[Geometry or Decoding]} \\
-Saliency map & \multicolumn{2}{@{}L{12.3cm}@{}}{a readout-level instrument is used to test a representation-level claim $\rightarrow$ Evaluation (\S\ref{sec:evaluation})} \\
+Attention over tokens & the weights are read as an observation & Tracing (\S\ref{sec:tracing}) & --- \\
+Attention over tokens & tokens or heads are removed & Intervention (\S\ref{sec:intervention}) & Tracing \\
+\addlinespace
+Network dissection & units are scored against a supplied concept set & Decoding (\S\ref{sec:decoding}) & Discovery \\
+\addlinespace
+Dictionary features, steered & the features are named, and then steered & Discovery and Intervention & --- \\
+\addlinespace
+Post-hoc bottleneck & a concept layer on a frozen encoder is decodable & Decoding (\S\ref{sec:decoding}) & Intrinsic design (\S\ref{sec:intrinsic}) \\
+\addlinespace
+Logit or tuned lens & information is localised across decoder layers & Tracing (\S\ref{sec:tracing}) & --- \\
+\addlinespace
+Embedding operation & a stored embedding is changed and re-evaluated & Intervention (\S\ref{sec:intervention}) & Geometry or Decoding \\
+\addlinespace
+Saliency map & a representation-level claim is tested with a readout-level instrument & Evaluation (\S\ref{sec:evaluation}) & --- \\
 \bottomrule
 \end{tabular}
+\\[3pt]
+\begin{minipage}{\textwidth}\footnotesize
+A study's family follows the claim it makes, not the algorithm it runs, so the first four methods appear
+twice. The primary family fixes the section in which the study is reviewed, given in parentheses; the
+secondary family is recorded in the coding and does not. ICA, independent-component analysis; CKA,
+centred kernel alignment; NMF, non-negative matrix factorisation; PCA, principal-component analysis;
+RSA, representational similarity analysis. Embedding operations are whitening, harmonisation,
+projection, transport and unlearning, inventoried under F9b.
+\end{minipage}
 \end{table*}
 
 \textbf{Locus.} The six loci and encoder subloci used here are defined in \S\ref{sec:loci} and shown in
