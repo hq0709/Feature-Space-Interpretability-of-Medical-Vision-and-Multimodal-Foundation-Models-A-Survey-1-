@@ -1,4 +1,12 @@
-\textbf{Eligibility.} A \emph{core study} (i) analyses or intervenes on an internal representation
+\textbf{Eligibility.} 
+% Yaxin's comment:
+% For better clarity, in Eligibiilty part, maybe we can adjust the structure to be the following:
+% \textbf{Eligibility.} We assessed eligibility at three levels: the model, access to its representations, and the claim made by the study.
+% \paragraph{Model eligibility.} A model qualified as a medical foundation model if....
+% \paragraph{Representation access.} A study had to measure or intervene on an internal representation, such as an embedding or activation....
+% \paragraph{Claim eligibility.} A study had to report a representation-level measurement or claim...
+% We excluded output-only and input-attribution-only studies unless they directly tested a representation-level claim...(other inclusion/exclusion criterions)
+A \emph{core study} (i) analyses or intervenes on an internal representation
 (\S\ref{sec:prelim}) of (ii) an eligible medical vision or vision--language foundation model, or an
 encoder used to assemble one (\S\ref{sec:models}), and (iii) reports a measurement. Three decisions are
 kept apart in the eligibility coding. \emph{Foundation-model status} is the definition of
@@ -34,7 +42,10 @@ papers and counted as preprints. Frozen-feature benchmarks are admitted only whe
 representation-level property beyond task accuracy; accuracy leaderboards, and four parameter-editing
 benchmarks that report only output-level reliability, locality and generality, are contextual.
 
-\textbf{Search and screening.} The literature was searched between 15 and 18 August 2026 in Semantic
+\textbf{Search and screening.} 
+% Yaxin's comment:
+% It seems that the screening procedure contains: database search -> citation searching --> screening --> contextual sources --> review and documentation. Maybe reorganizing the subsection chronologically under short headings and adding a flow diagram would improve the clarity of the screening procedure.
+The literature was searched between 15 and 18 August 2026 in Semantic
 Scholar, OpenAlex and arXiv, for work published from January 2018 to the cutoff of 16 August 2026, and
 MEDLINE (PubMed) was searched on 21 August 2026. Each query combined the vocabulary of one method family
 (probing and concept decoding, concept bottlenecks, dictionaries and dissection, attention and
@@ -80,7 +91,11 @@ modality, whether it compares a medical with a general model on the same data, w
 than one model or dataset, and, for interventional claims, the control used (\S\ref{sec:taxonomy}).
 Every count in this article is a count of records or of studies in this corpus.
 
-\textbf{Where the evidence sits.} The corpus holds \Ncore{} core studies and \Nclaims{} records;
+\textbf{Where the evidence sits.} 
+% Yaxin's comment:
+% I feel that this subsection mixed "distribution of the evidence"
+% I guess it would be better to keep this subsection focused on what Figure 2 reveals, while relocating the detailed explanation of the taxonomy to the “Coding” subsection.
+The corpus holds \Ncore{} core studies and \Nclaims{} records;
 \Nrecent{} of the studies (\Pctrecent\%) appeared in 2025--2026, and 2026 is a partial year
 (Fig.~\ref{fig:corpus}a). Fig.~\ref{fig:corpus} shows the shape of the corpus. Observational
 claims at the vision encoder and in the projected joint space dominate, pathology and chest radiography
