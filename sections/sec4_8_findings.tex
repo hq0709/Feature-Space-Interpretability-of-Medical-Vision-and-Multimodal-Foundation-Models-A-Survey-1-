@@ -24,11 +24,10 @@ records \Fnorow{} support no row and \Fmultirow{} are counted in more than one, 
 in three. \Fflagrec{} of them, from \Fdefstud{} studies, carry a recorded defect of one of five
 result-invalidating kinds (resubstitution, leakage across split units, circular estimation, selection on
 the reported metric, or single-case fitting~\cite{kapoor2023leakage}) and are marked with $^{\dagger}$
-wherever they appear rather than removed. Counts weight neither sample size nor effect size, the same
-datasets recur (CheXpert, MIMIC-CXR and TCGA run through F1a, F2, F2b and F3a alone), and only
-\Nminvalid{} of the \Ncore{} studies state a patient-, slide- or subject-level split, evaluate on data
-unused for fitting and report seeds, intervals or tests; taken singly those three are reported by
-67, 47 and 81 studies, and a dictionary's reproducibility by \Nsaestab{} of \Nsae{}. Where records disagree, the disagreement is
+wherever they appear rather than removed. Counts weight neither sample size nor effect size, and the same
+datasets recur (CheXpert, MIMIC-CXR and TCGA run through F1a, F2, F2b and F3a alone); the splits,
+external evaluation and uncertainty that the corpus reports are in \S\ref{sec:eval-compare}, and a
+dictionary's reproducibility in \Nsaestab{} of \Nsae{}. Where records disagree, the disagreement is
 stated rather than averaged.
 
 How well a statement's evidence is safeguarded is a separate question from how much of it there is, and
@@ -85,21 +84,18 @@ medical with a general foundation model on the same data; seventeen further reco
 an ImageNet- or task-supervised classifier and are excluded. F10 collects the decoding records and F11
 those in which a property is shared or differs; three records are marked not compared, because the
 general model is measured only on zero-shot accuracy rather than on the coded property, and three with
-a determinate outcome fall outside both rows. Where the medical model is better, it is better by degree,
-under linear probing, frozen-feature adaptation, expert concept scoring and pathology
+a determinate outcome fall outside both rows. Where the medical model is better it is better by degree, under
+linear probing, frozen-feature adaptation, expert concept scoring and pathology
 segmentation~\cite{li2025featurequality,germani2025bias,zhou2025generalist,kim2024transparent,song2024morphological,gildenblat2024segmentation,cui2026translating};
-against this, general self-supervised features match medical baselines across more than 200 radiology
-evaluations~\cite{baharoon2023dinov2}, a specialist model beats every foundation model in radiological
-retrieval~\cite{denner2024leveraging}, no encoder dominates among ten CT
-models~\cite{chevli2026frozenct}, cohort-specific pathology models learn complementary rather than
-better features~\cite{neidlinger2025benchmark}, and a general encoder is at least as good after
-post-hoc alignment~\cite{folco2025semantic,wesp2026sparse}. The properties that matter most for
-interpretability are shared by both kinds of model: low effective dimensionality and the same
-degradation under whitening~\cite{garciahidalgo2026embedding}, shortcut reliance on the same
-radiographs~\cite{li2025featurequality,sourget2025fairness}, the loss of small-lesion signal at global
-pooling~\cite{muthyala2026frozen}, subgroup disparities across twenty models~\cite{jin2024fairmedfm},
-the modality gap~\cite{restrepo2026cone}, and nearest neighbours that carry the opposite
-label~\cite{arasteh2026candor}. All of these are convenience comparisons that vary architecture,
+against this, general or specialist encoders match or beat it across more than 200 radiology
+evaluations, in radiological retrieval, among ten CT models, in complementary rather than better
+pathology features, and after post-hoc
+alignment~\cite{baharoon2023dinov2,denner2024leveraging,chevli2026frozenct,neidlinger2025benchmark,folco2025semantic,wesp2026sparse}.
+The properties that matter most for interpretability are shared by both kinds of model, from low
+effective dimensionality and the same degradation under whitening to shortcut reliance on the same
+radiographs, the loss of small-lesion signal at global pooling, subgroup disparities, the modality gap
+and nearest neighbours that carry the opposite
+label~\cite{garciahidalgo2026embedding,li2025featurequality,sourget2025fairness,muthyala2026frozen,jin2024fairmedfm,restrepo2026cone,arasteh2026candor}. All of these are convenience comparisons that vary architecture,
 objective, scale and data at once; the one study that stratifies the objective in a controlled matrix
 does not vary medical against general pre-training~\cite{tayebiarasteh2026self}. The effect of medical
 pre-training itself is therefore unidentified, and no study tests whether an interpretability method

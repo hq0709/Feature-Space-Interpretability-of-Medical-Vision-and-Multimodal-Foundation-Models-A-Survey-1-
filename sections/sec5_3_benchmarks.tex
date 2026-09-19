@@ -20,21 +20,9 @@ benchmark~\cite{saporta2022benchmarking} and revised criteria~\cite{zhang2023rev
 vision--language audits find attention unfaithful under occlusion~\cite{sadanandan2026attention}, low
 grounding accuracy~\cite{chen2026grounding} and weak reasoning faithfulness under
 perturbation~\cite{moll2025faithfulness}; a test-bed builds faithful and unfaithful pairs by model
-editing to test the metrics themselves~\cite{zaman2025causal}. Sparse-autoencoder evaluation has
-SAEBench and its re-seeding audit, SynthSAEBench's synthetic ground truth, cross-seed feature sharing and
-intervention-scored
-interpretation~\cite{karvonen2025saebench,chanin2026are,chanin2026synthsaebench,paulo2025sparse,paulo2024automatically}
-(\S\ref{sec:discovery}); steering has a unified framework~\cite{im2025unifiedsteering} and the
-reliability, non-identifiability and safety studies that supply its negative
-controls~\cite{tan2024steeringreliability,venkatesh2026nonident,korznikov2025the}.
-
-\textbf{Tooling.} The designs of \S\ref{sec:methods} run on open software: sparse dictionaries with the
-SAELens and dictionary-learning libraries, patching and steering of open multimodal LLMs with
-TransformerLens, nnsight or pyvene, and closed-form concept erasure with a reference LEACE
-implementation~\cite{belrose2023leace}. Released medical
-dictionaries~\cite{abdulaal2024an,nooralahzadeh2026universal} and the checkpoints of
-Table~\ref{tab:models} supply the objects. A model that exposes embeddings but not weights (\S\ref{sec:models}) admits decoding and geometry but
-not tracing or intervention inside the forward pass.
+editing to test the metrics themselves~\cite{zaman2025causal}. Sparse-autoencoder evaluation and steering each have suites of their own, read in
+\S\ref{sec:discovery} and
+\S\ref{sec:intervention}~\cite{karvonen2025saebench,chanin2026are,chanin2026synthsaebench,paulo2025sparse,paulo2024automatically,im2025unifiedsteering,tan2024steeringreliability,venkatesh2026nonident,korznikov2025the}.
 
 \textbf{Human evaluation and reporting standards.} A three-phase study found that dermatologist-aligned
 explanations increased trust and confidence~\cite{chanda2023dermatologist}. Systematic reviews find few

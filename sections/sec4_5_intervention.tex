@@ -5,10 +5,8 @@ This family holds three subtypes that share a name but not an estimand, and thei
 read as one total. Interventions inside the forward pass change an activation in a fixed model; post-hoc
 transformations change what a refitted readout can do with a stored vector; parameter editing and
 unlearning change the model's weights and identify no representation-level mediator unless the study
-measures one. Each takes a different control (Table~\ref{tab:families}). Within the forward pass, a
-non-zero effect establishes that the output is sensitive to a locus, and a matched control establishes
-selectivity for a direction; a concept-specific contribution needs a mediation or causal-abstraction
-design, which no reviewed medical study reports (\S\ref{sec:causal-claims}). The methods come from language
+measures one. Each takes a different control (Table~\ref{tab:families}), and each is read against the
+three rungs of \S\ref{sec:causal-claims}; no reviewed medical study reaches the third. The methods come from language
 models~\cite{vig2020causal,geiger2021causal,geiger2023causal,meng2022locating,meng2022mass,zhang2023towards,turner2023steering,rimsky2023steering,zou2023representation,li2023inference,arditi2024refusal},
 and medical claims date from 2025--2026 and remain sparse and decoder-centred
 (Fig.~\ref{fig:corpus}b), after an early orthogonalisation of chest-radiograph

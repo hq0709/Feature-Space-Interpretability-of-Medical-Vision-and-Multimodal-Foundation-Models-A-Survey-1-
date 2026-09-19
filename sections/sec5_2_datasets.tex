@@ -32,28 +32,21 @@ CT-RATE / RAD-ChestCT~\cite{hamamci2024ctrate,draelos2020radchestct} & chest CT 
 \end{table*}
 
 
-Table~\ref{tab:datasets} lists the recurring resources; three properties of them bound what
-representation-level evaluation can currently establish.
-
-\textbf{Label provenance.} The large chest-radiograph corpora carry findings extracted from reports by
-automatic labellers rather than assigned by
-radiologists~\cite{irvin2019chexpert,johnson2019mimic,johnson2019mimicjpg,wang2017chestxray}. A probe
-fitted to them measures agreement with a labeller's reading of the report, not with a radiologist reading
-the image. Expert resources supply a direct clinical
-reference~\cite{nguyen2020vindr,liu2020chestxdet,bustos2019padchest,jain2021radgraph,smit2020chexbert}.
-In pathology the two resources listed differ in kind, a text corpus and expert region
-annotations~\cite{ikezogwo2023quilt,litjens2018camelyon}, and concept-scored image--text models are
-resources in their own right~\cite{kim2024transparent,nie2025explainable}. Volumetric imaging offers
-report-derived abnormality labels only~\cite{hamamci2024ctrate,draelos2020radchestct}.
-
-\textbf{Expert concept density.} Dermatology is the best-annotated modality, with checklist criteria,
-dermatologist-assigned concepts, dermoscopic structure masks and a hierarchically annotated South-Indian
-cohort~\cite{kawahara2019derm7pt,daneshjou2023skincon,mendonca2013ph2,codella2019isic,madarkar2025dermacon};
-and it therefore carries the best-validated concept bottlenecks. Even here the annotation is not a ground
-truth: 16\% of Derm7pt concept profiles map to conflicting diagnoses~\cite{napoles2026concept}.
-
-\textbf{Demographic metadata.} Confounder analysis needs attributes the datasets rarely record: only two of
-23 audited public chest-radiograph datasets report ethnicity~\cite{yi2022demographic}. EMBED supplies
-racially balanced mammography~\cite{jeong2022embed} and FairMedFM combines 17 datasets with sensitive
-attributes across 20 foundation models~\cite{jin2024fairmedfm}.
+Table~\ref{tab:datasets} lists the recurring resources, and three properties of them bound what
+representation-level evaluation can currently establish. \emph{Label provenance}: the large
+chest-radiograph corpora, and the volumetric ones, carry findings extracted from reports by automatic
+labellers rather than assigned by
+radiologists~\cite{irvin2019chexpert,johnson2019mimic,johnson2019mimicjpg,wang2017chestxray,hamamci2024ctrate,draelos2020radchestct},
+so a probe fitted to them measures agreement with a labeller's reading of the report, not with a
+radiologist reading the image; expert
+resources~\cite{nguyen2020vindr,liu2020chestxdet,bustos2019padchest,jain2021radgraph,smit2020chexbert,litjens2018camelyon},
+text corpora~\cite{ikezogwo2023quilt} and concept-scored image--text
+models~\cite{kim2024transparent,nie2025explainable} differ in kind. \emph{Expert concept density}:
+dermatology is the best-annotated
+modality~\cite{kawahara2019derm7pt,daneshjou2023skincon,mendonca2013ph2,codella2019isic,madarkar2025dermacon}
+and carries the best-validated concept bottlenecks, yet even there 16\% of Derm7pt concept profiles map
+to conflicting diagnoses~\cite{napoles2026concept}. \emph{Demographic metadata}: confounder analysis
+needs attributes the datasets rarely record, and only two of 23 audited public chest-radiograph datasets
+report ethnicity~\cite{yi2022demographic}, the balanced and pooled resources of
+Table~\ref{tab:datasets} being the exceptions~\cite{jeong2022embed,jin2024fairmedfm}.
 

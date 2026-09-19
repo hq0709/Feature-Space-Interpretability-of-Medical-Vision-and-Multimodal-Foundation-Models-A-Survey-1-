@@ -71,8 +71,10 @@ reader studies are rare (\S\ref{sec:eval-bench}). A trial could show or withhold
 developers choosing an encoder, and record their choices and the subgroup performance of the deployed
 models.
 
-None of these experiments needs a new instrument: open suites, closed-form linear
-erasure~\cite{belrose2023leace}, released dictionaries~\cite{abdulaal2024an,nooralahzadeh2026universal},
+None of these experiments needs a new instrument: the open dictionary, patching and steering
+suites (SAELens, TransformerLens, nnsight, pyvene), closed-form linear
+erasure~\cite{belrose2023leace}, released medical
+dictionaries~\cite{abdulaal2024an,nooralahzadeh2026universal},
 the expert-verified scorers of \S\ref{sec:eval-data}~\cite{kim2024transparent} and the models of
 Table~\ref{tab:models} suffice. What is feasible depends on access: embeddings alone support calibrated probing, geometry and site measurement, and erasure before
 a downstream evaluation; open encoder weights add a randomly initialised baseline and layer- and
