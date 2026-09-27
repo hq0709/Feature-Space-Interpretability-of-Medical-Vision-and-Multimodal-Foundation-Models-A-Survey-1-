@@ -1,6 +1,7 @@
-
 \section{What counts as evidence}
 \label{sec:evidence}
+% Yaxin's comment:
+% This section seems to contain the paper’s central conceptual contribution, and it is very dense for people who are not familiar with this field. Maybe adding two or three sentences explaining the section’s logic would be helpful (e.g. We evaluate representation-level claims in three steps. First, we distinguish evidence that information is encoded from evidence that it is used (4.1). Second, we formalize the measurements and interventions underlying these claims (4.2–4.3). Third, we define the properties used to evaluate their validity (4.4).)
 
 Fig.~\ref{fig:families} draws the ladder of evidence from observation to concept-specific causal
 contribution that the formal view below defines.
@@ -21,9 +22,23 @@ The converse error also exists: an uncontrolled intervention that changes behavi
 output is sensitive to the representation, not that the direction means what it was named. The
 taxonomy of \S\ref{sec:taxonomy} tags the two kinds of evidence apart.
 
+% Yaxin's comment:
+% I guess adding some medical examples here would be helpful to demonstrate the distinction between "what is encoded" and "what is used". With the help of ChatGPT, there goes an example of such example:
+%"A probe may recover patient sex from a chest-radiograph embedding, showing that sex is available to a downstream decoder. This does not show that the model uses sex when predicting a finding. Establishing use requires changing the relevant representation while holding the rest of the computation fixed and measuring the resulting prediction change."
 \subsection{Formal view}
-\label{sec:formal}
+% Yaxin's comment:
+% Please reconsider the order of 4.2 and 4.3
+% 4.2 and 4.3 are closely connected, yet the three causal claims in 4.3 are conceptually easier than the formal notation in 4.2.
 
+% The “Formal view” subsection is especially dense because it defines every method family in continuous prose. Separate it into short paragraphs, with each paragraph corresponding to one method:
+% Structural analysis
+% Decoding
+% Feature discovery
+% Tracing
+% Intervention
+% Also, it would be easier for the reader to follow if each paragraph follow the same pattern. For example, what the method it computes; what claim it supports; and what it does not establish.
+
+\label{sec:formal}
 In the notation of \S\ref{sec:prelim}, each family characterises a functional of
 the representation $z_\lambda(x)$ at a locus $\lambda$; the families differ in the functional and in
 whether the forward pass is left intact. For a multimodal model the state also depends on the prompt
