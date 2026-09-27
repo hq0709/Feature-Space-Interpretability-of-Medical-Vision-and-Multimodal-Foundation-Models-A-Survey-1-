@@ -43,32 +43,42 @@ records.
 
 \input{tables/tab_statements}
 
-The evidence behind the five conclusions of Table~\ref{tab:synthesis} reads as follows.
+The five subsections below give the evidence behind the five conclusions of
+Table~\ref{tab:synthesis}, one each, in its order. Each names the statements of
+Table~\ref{tab:statements} it rests on rather than only their row codes.
 
-\emph{Availability against use.} The decodability statements (F1a, F1a$^{\prime}$, F1b, F1c, F2b) rest
-on 18, 15, 6, 12 and 11 distinct first authors and on four or more modalities each. The statements of
-most practical consequence rest on far less. Linear redundancy of a decodable attribute for a refitted
-readout (F4) rests on one record; attributions failing an instrumented faithfulness test (F8a) on six
-studies, with method disagreement (F8a$'$) and qualitative implausibility (F8a$''$) carried as separate,
-weaker rows; and a targeted intervention exceeding a matched control (F9a) on three records, only one
-of them against random directions. The interventional record is too heterogeneous and too weakly
+\subsection{Availability against use}
+
+Five statements report that a concept is decodable: clinical findings and anatomy under linear and under
+non-linear readouts, held-out recovery by text-anchored scorers, concept layers on foundation features,
+and acquisition site and device. They rest on 18, 15, 6, 12 and 11 distinct first authors and on four or
+more modalities each. The statements of most practical consequence rest on far less. That a decodable
+attribute is linearly redundant for a refitted readout rests on one record; that attributions fail an
+instrumented faithfulness test, on six studies, with method disagreement and qualitative implausibility
+carried as separate, weaker rows; and that a targeted intervention exceeds a matched control, on three
+records, only one of them against random directions. The interventional record is too heterogeneous and too weakly
 controlled to support any claim about magnitude: the eight records to which a matched-direction control
 applies use incomparable end-points, none reports a dose--response curve, and two vary the magnitude
 while tuning it~\cite{chen2026vihd,nooralahzadeh2026universal}. The effects can be listed but not
 compared, from under 0.02 AUROC for a post-hoc gap shift~\cite{restrepo2026cone} and under 0.001 for
 residualising a demographic attribute~\cite{kim2026encoding}$^{\dagger}$ to the collapse of a finding's
 own AUROC when the roughly ten channels that decode it are zeroed~\cite{nooralahzadeh2026sparse}.
-Post-hoc operations on frozen embeddings (F3b, F5, F6, F9b) are the only interventions with more than a
-handful of records.
+Post-hoc operations on frozen embeddings --- harmonisation, whitening, gap shifting, erasure and
+editing --- are the only interventions with more than a handful of records.
 
-\emph{Acquisition and site structure.} Centre, scanner and device are recoverable from pathology and
-brain-MRI embeddings in every record of F2b and F3c and in all but one of F3a's, by 11, 16 and 3
-distinct first authors, and where both are measured, centre rivals or exceeds biological structure. The
-benefit of removing it depends on the operation. Among the records of F3b, affine harmonisation raises
-cross-scanner retrieval and centre removal raises a robustness index without improving downstream
-generalisation, and no record reports the downstream end-point after harmonisation on a held-out site.
+\subsection{Acquisition and site structure}
 
-\emph{Meaning of discovered features.} Naming and validation are separate steps, and an automatically
+Centre, scanner and device are recoverable from pathology and brain-MRI embeddings in every record of
+the three statements that test them --- site and device decodability, centre and scanner in pathology,
+and site and artefact in brain MRI --- except one, by 11, 16 and 3 distinct first authors, and where both
+are measured, centre rivals or exceeds biological structure. The benefit of removing it depends on the
+operation. Among the harmonisation records, affine harmonisation raises cross-scanner retrieval and
+centre removal raises a robustness index without improving downstream generalisation, and no record
+reports the downstream end-point after harmonisation on a held-out site.
+
+\subsection{Meaning of discovered features}
+
+Naming and validation are separate steps, and an automatically
 named feature can still be validated: of the \Nsaeval{} dictionaries with a reported semantic check,
 \Nsaemanual{} are named manually, \Nsaelabmatch{} by label matching, \Nsaellm{} by a language model and
 \Nsaetext{} by text matching. The validated dictionaries share one property, their locus: all read
@@ -79,10 +89,13 @@ residual-stream dictionaries of report generators surface report-level rather th
 concepts. \Nsaestab{} of the \Nsae{} report any reproducibility check, and none establishes the
 cross-seed identity of its features.
 
-\emph{Medical against general pre-training.} \Nmvgrec{} core records from \Nmvgstud{} studies compare a
+\subsection{Medical against general pre-training}
+
+\Nmvgrec{} core records from \Nmvgstud{} studies compare a
 medical with a general foundation model on the same data; seventeen further records compare only with
-an ImageNet- or task-supervised classifier and are excluded. F10 collects the decoding records and F11
-those in which a property is shared or differs; three records are marked not compared, because the
+an ImageNet- or task-supervised classifier and are excluded. Two inventory rows hold them, one for the
+decoding records and one for the records in which a property is shared or differs; three records are
+marked not compared, because the
 general model is measured only on zero-shot accuracy rather than on the coded property, and three with
 a determinate outcome fall outside both rows. Where the medical model is better it is better by degree, under
 linear probing, frozen-feature adaptation, expert concept scoring and pathology
@@ -101,7 +114,9 @@ does not vary medical against general pre-training~\cite{tayebiarasteh2026self}.
 pre-training itself is therefore unidentified, and no study tests whether an interpretability method
 transfers between the two kinds of model (\S\ref{sec:future}).
 
-\emph{Where to measure.} Varying the readout within one model, as three studies do, suggests \textemdash{}
+\subsection{Where to measure}
+
+Varying the readout within one model, as three studies do, suggests \textemdash{}
 as a hypothesis rather than a statement \textemdash{} that readout granularity can dominate apparent decodability for small or
 spatially localised targets: pooled probes sit at chance where patch-local probes on the same forward
 pass reach 0.899 AUC, although only under an oracle lesion box~\cite{muthyala2026frozen}; shallow blocks
@@ -109,5 +124,5 @@ carry spatial information better than deep ones~\cite{vadori2025mind}; and acqui
 large principal component~\cite{rahbar2026frozen}. No design separates model, depth and pooling, so
 what follows for practice is only that an availability claim should name its sublocus as well as its
 model. Beyond the encoder, class labels become less decodable after the connector in one uncontrolled
-successive-locus probe (F8b), and no other core record measures a medical connector or the text encoder
+successive-locus probe, and no other core record measures a medical connector or the text encoder
 as a locus of its own.

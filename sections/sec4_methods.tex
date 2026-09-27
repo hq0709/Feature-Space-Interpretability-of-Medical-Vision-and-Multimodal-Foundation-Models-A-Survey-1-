@@ -1,10 +1,14 @@
 \section{What counts as evidence}
 \label{sec:evidence}
-% Yaxin's comment:
-% This section seems to contain the paper’s central conceptual contribution, and it is very dense for people who are not familiar with this field. Maybe adding two or three sentences explaining the section’s logic would be helpful (e.g. We evaluate representation-level claims in three steps. First, we distinguish evidence that information is encoded from evidence that it is used (4.1). Second, we formalize the measurements and interventions underlying these claims (4.2–4.3). Third, we define the properties used to evaluate their validity (4.4).)
 
-Fig.~\ref{fig:families} draws the ladder of evidence from observation to concept-specific causal
-contribution that the formal view below defines.
+A representation-level claim is read here in three steps. The first separates evidence that a concept is
+encoded in a representation from evidence that the model uses it (\S\ref{sec:two-questions}), a
+distinction that fixes what any single measurement can support. The second grades interventional
+evidence on three rungs of increasing strength (\S\ref{sec:causal-claims}) and states the estimand that
+each method family reports (\S\ref{sec:formal}). The third names the properties against which an
+artefact is validated, and how often this corpus reports them (\S\ref{sec:eval-what}).
+Fig.~\ref{fig:families} draws the resulting ladder, from observation to concept-specific causal
+contribution.
 
 \subsection{Two questions}
 \label{sec:two-questions}
@@ -22,71 +26,19 @@ The converse error also exists: an uncontrolled intervention that changes behavi
 output is sensitive to the representation, not that the direction means what it was named. The
 taxonomy of \S\ref{sec:taxonomy} tags the two kinds of evidence apart.
 
-% Yaxin's comment:
-% I guess adding some medical examples here would be helpful to demonstrate the distinction between "what is encoded" and "what is used". With the help of ChatGPT, there goes an example of such example:
-%"A probe may recover patient sex from a chest-radiograph embedding, showing that sex is available to a downstream decoder. This does not show that the model uses sex when predicting a finding. Establishing use requires changing the relevant representation while holding the rest of the computation fixed and measuring the resulting prediction change."
-\subsection{Formal view}
-% Yaxin's comment:
-% Please reconsider the order of 4.2 and 4.3
-% 4.2 and 4.3 are closely connected, yet the three causal claims in 4.3 are conceptually easier than the formal notation in 4.2.
-
-% The “Formal view” subsection is especially dense because it defines every method family in continuous prose. Separate it into short paragraphs, with each paragraph corresponding to one method:
-% Structural analysis
-% Decoding
-% Feature discovery
-% Tracing
-% Intervention
-% Also, it would be easier for the reader to follow if each paragraph follow the same pattern. For example, what the method it computes; what claim it supports; and what it does not establish.
-
-\label{sec:formal}
-In the notation of \S\ref{sec:prelim}, each family characterises a functional of
-the representation $z_\lambda(x)$ at a locus $\lambda$; the families differ in the functional and in
-whether the forward pass is left intact. For a multimodal model the state also depends on the prompt
-$t$, the token position $p$ and, for generated end-points, the decoding policy, so $z_\lambda(x)$
-abbreviates $z_\lambda(x,t,p)$ and $B(x)$ abbreviates $B(x,t)$ under a fixed decoding rule. A claim
-about a decoder or connector state is therefore conditional on the prompt and position at which it was
-measured, which is why locus and readout are coded separately. Structural analysis reports a statistic
-$\Phi(\{z_\lambda(x_i)\}_{i=1}^{N})$ of the embedding distribution, unconditionally or stratified by
-metadata such as scanner or site; it decodes no concept. Decoding fits, within a decoder class
-$\mathcal{G}$ and on a training set $\mathcal{T}$, the map
-\begin{equation}
-\hat g=\arg\min_{g\in\mathcal G}\ \tfrac{1}{|\mathcal T|}\textstyle\sum_{i\in\mathcal T}\ell\big(g(z_\lambda(x_i)),\,c(x_i)\big)
-\label{eq:probe}
-\end{equation}
-and reports the performance of $\hat g$ on held-out examples, which depends on $\mathcal G$ as much as
-on $z_\lambda$. Prompt-similarity scoring and labelled representational similarity recover $c$ without
-a fitted $\hat g$, and are grouped with decoding by the claim they license, the second as its weakest
-member (\S\ref{sec:taxonomy}). Discovery fits a dictionary $D$ and sparse codes $a(x)$ with
-$z_\lambda(x)\approx D\,a(x)$, then names the columns. Tracing reports functionals of the unchanged
-forward pass indexed by layer, position or component, such as layer-wise decoding of $h^{(\ell)}$ or the
-attention mass on visual tokens. Intervention replaces $z_\lambda$ by $\tilde z_\lambda$ and reports the
-behavioural effect
-\begin{equation}
-\Delta B=B\big(x;\,z_\lambda\!\leftarrow\!\tilde z_\lambda\big)-B(x),
-\label{eq:effect}
-\end{equation}
-with $\overline{\Delta B}=\mathbb{E}_x[\Delta B(x)]$ its expectation over inputs and, for generated
-text, over the decoding policy; the reviewed studies report sample averages of it.
-Equation~(\ref{eq:effect}) describes interventions inside the forward pass. Post-hoc transformations of
-stored embeddings, parameter editing and unlearning have estimands and end-points of their own
-(\S\ref{sec:intervention}). For a steering intervention $\tilde z_\lambda=z_\lambda+\alpha v_c$ along a
-direction built for concept $c$, the coding records whether the study compares $\Delta B(\alpha v_c)$
-with a matched control. Exceeding matched controls establishes selective sensitivity to the direction,
-not semantic validity, which depends on how $v_c$ was obtained. Erasure carries part of its control in
-its construction, an affine map that removes the linear predictability of $c$~\cite{belrose2023leace},
-but attributing a behavioural change to it still requires a sham or rank-matched transformation and
-checks that correlated concepts and off-target performance survive. The paired probe-and-intervention
-design that the medical corpus lacks (\S\ref{sec:intervention}, \S\ref{sec:future}) follows directly
-from the two equations: $v_c$ is the normal of a probe fitted by~(\ref{eq:probe}) or a dictionary
-column that decodes $c$, and~(\ref{eq:effect}) is reported against matched control directions at the
-same locus and end-point.
-
-
+A medical instance makes the gap concrete. Frozen CT embeddings from an encoder trained without
+demographic labels decode patient sex at AUROC 0.998~\cite{zheng2024demographic}, which establishes that
+sex is available to any readout placed on those features. It does not establish that a model built on
+them relies on sex when it reports a finding: that requires changing the representation that carries
+sex, holding the rest of the computation fixed, and measuring a pre-specified end-point.
+\S\ref{sec:decoding} reports the two medical studies that attempt such a test and
+\S\ref{sec:intervention} what their controls can and cannot establish.
 
 \subsection{Three causal claims}
 \label{sec:causal-claims}
 
-Three claims of increasing strength follow from~(\ref{eq:effect}).
+An intervention supports one of three claims of increasing strength, and the rung it reaches is set by
+its control rather than by the size of its effect; \S\ref{sec:formal} gives the estimand behind each.
 \emph{Causal sensitivity} means that the output changes when $z_\lambda$ is changed; any intervention
 whose effect exceeds its uncertainty over inputs establishes it. \emph{Direction-selective sensitivity}
 means that the effect of $v_c$ exceeds that of matched controls. \emph{Concept-specific causal
@@ -103,6 +55,68 @@ can move and factors that are causally meaningful is the one Sch\"olkopf \emph{e
 al.}~\cite{scholkopf2021causal} draw for representation learning in general. Table~\ref{tab:families}
 (\S\ref{sec:comparison}) restates this view family by family.
 
+\subsection{Formal view}
+\label{sec:formal}
+
+In the notation of \S\ref{sec:prelim}, each family characterises a functional of
+the representation $z_\lambda(x)$ at a locus $\lambda$; the families differ in the functional and in
+whether the forward pass is left intact. For a multimodal model the state also depends on the prompt
+$t$, the token position $p$ and, for generated end-points, the decoding policy, so $z_\lambda(x)$
+abbreviates $z_\lambda(x,t,p)$ and $B(x)$ abbreviates $B(x,t)$ under a fixed decoding rule. A claim
+about a decoder or connector state is therefore conditional on the prompt and position at which it was
+measured, which is why locus and readout are coded separately. Each paragraph below gives one family's
+functional, the claim it licenses and the claim it does not.
+
+\textbf{Structural analysis} reports a statistic $\Phi(\{z_\lambda(x_i)\}_{i=1}^{N})$ of the embedding
+distribution, unconditionally or stratified by metadata such as scanner or site. It licenses statements
+about the shape of the space and about which metadata organise it, and it decodes no concept, so it
+attaches no meaning to any direction.
+
+\textbf{Decoding} fits, within a decoder class $\mathcal{G}$ and on a training set $\mathcal{T}$, the map
+\begin{equation}
+\hat g=\arg\min_{g\in\mathcal G}\ \tfrac{1}{|\mathcal T|}\textstyle\sum_{i\in\mathcal T}\ell\big(g(z_\lambda(x_i)),\,c(x_i)\big)
+\label{eq:probe}
+\end{equation}
+and reports the performance of $\hat g$ on held-out examples. It licenses the statement that $c$ is
+recoverable from $z_\lambda$ by a decoder in $\mathcal{G}$, a joint property of the representation and
+the decoder, since the result depends on $\mathcal G$ as much as on $z_\lambda$; it does not show that
+the model uses $c$. Prompt-similarity scoring and labelled representational similarity recover $c$
+without a fitted $\hat g$, and are grouped with decoding by the claim they license, the second as its
+weakest member (\S\ref{sec:taxonomy}).
+
+\textbf{Feature discovery} fits a dictionary $D$ and sparse codes $a(x)$ with
+$z_\lambda(x)\approx D\,a(x)$, then names the columns. It licenses the statement that a unit's
+activation tracks the content its name reports, and not that the unit survives re-training, that the
+dictionary is complete, or that the named content is used.
+
+\textbf{Tracing} reports functionals of the unchanged forward pass indexed by layer, position or
+component, such as layer-wise decoding of $h^{(\ell)}$ or the attention mass on visual tokens. It
+licenses a statement about where information is decodable or attended; because the forward pass is left
+intact, it does not show that the located component carries the output.
+
+\textbf{Intervention} replaces $z_\lambda$ by $\tilde z_\lambda$ and reports the
+behavioural effect
+\begin{equation}
+\Delta B=B\big(x;\,z_\lambda\!\leftarrow\!\tilde z_\lambda\big)-B(x),
+\label{eq:effect}
+\end{equation}
+with $\overline{\Delta B}=\mathbb{E}_x[\Delta B(x)]$ its expectation over inputs and, for generated
+text, over the decoding policy; the reviewed studies report sample averages of it. It licenses the rungs
+of \S\ref{sec:causal-claims} and nothing above the rung its control reaches.
+Equation~(\ref{eq:effect}) describes interventions inside the forward pass. Post-hoc transformations of
+stored embeddings, parameter editing and unlearning have estimands and end-points of their own
+(\S\ref{sec:intervention}). For a steering intervention $\tilde z_\lambda=z_\lambda+\alpha v_c$ along a
+direction built for concept $c$, the coding records whether the study compares $\Delta B(\alpha v_c)$
+with a matched control. Exceeding matched controls establishes selective sensitivity to the direction,
+not semantic validity, which depends on how $v_c$ was obtained. Erasure carries part of its control in
+its construction, an affine map that removes the linear predictability of $c$~\cite{belrose2023leace},
+but attributing a behavioural change to it still requires a sham or rank-matched transformation and
+checks that correlated concepts and off-target performance survive.
+
+The paired probe-and-intervention design that the medical corpus lacks (\S\ref{sec:intervention},
+\S\ref{sec:future}) follows directly from the two equations: $v_c$ is the normal of a probe fitted
+by~(\ref{eq:probe}) or a dictionary column that decodes $c$, and~(\ref{eq:effect}) is reported against
+matched control directions at the same locus and end-point.
 
 \begin{figure*}[!tbp]
 \centering
