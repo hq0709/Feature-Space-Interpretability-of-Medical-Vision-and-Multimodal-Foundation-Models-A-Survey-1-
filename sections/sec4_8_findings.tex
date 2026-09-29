@@ -41,6 +41,37 @@ task of Hewitt and Liang~\cite{hewitt2019designing} appears in none. A matched c
 \Vspc{} of \Vspcn{} targeted interventions, and a comparison model in \Vcomp{} of \Vcompn{} geometry
 records.
 
+\textbf{What these counts are.} A count here is a count of records or of studies in this corpus, and a
+$k/n$ is the share of the records whose design can carry a control that report one. Neither is an effect
+size, a probability or an evidence score, and no grade combines them, so breadth and safeguards are read
+on two separate axes. On the first, a statement's \emph{corpus-breadth tier} is broad for at least five
+distinct first authors, at least two modalities and at least three peer-reviewed records, moderate for at
+least two distinct first authors together with either at least three of them or at least two modalities,
+and narrow otherwise; \Fbroad{} statements are broad, and the supplement gives the distinct first authors
+and the model lineages behind each. On the second, \Fzeroclass{} statements report no control in any class
+their designs could carry, and \Fhalfclass{} report each control in fewer than half of the records that
+could carry it. The two axes do not track each other: \Fbroadzero{} statement is broad and reports no
+control at all. Records are not independent either: \Fmultirow{} of the \Nclaims{} are counted in more than
+one statement, \Fmultithree{} of them in three, and the same datasets and groups recur across statements
+(\S\ref{sec:eval-compare}).
+
+\textbf{How far the statements depend on the weaker records.} Five restrictions were applied to every
+statement, each reported as a change in how much of the corpus stands behind it. On peer-reviewed records
+alone, \Fsensrefn{} statements change: \Fsensrefemptyn{} lose every record (\Fsensrefempty{}) and
+\Fsensreffalln{} fall to a narrower tier. On the \Nminvalid{} studies that state a patient-, slide- or
+subject-level split, evaluate on data unused for fitting and report seeds, intervals or tests,
+\Fsensminemptyn{} statements lose every record, \Fsensminfalln{} fall a tier and \Fsensminkeep{} is
+unchanged. With the records flagged above for one of the five result-invalidating kinds set aside,
+\Fscrdrop{} statements lose records and \Fscrtier{} change tier. Collapsing the records to one per
+last-author group, a coarse proxy for dependence between studies, changes \Fsenslastn{} statement
+(\Fsenslast{}), and collapsing to one per model lineage --- CLIP-style dual encoders, DINO-style
+self-supervised encoders, multimodal LLMs, task-specific classifiers --- changes \Fsenslinn{}
+(\Fsenslin{}). On the stratum that the recorded queries return on a re-run, \Frepdrop{} statements lose a
+record: \Frepdetail{}; \Freptier{} of them change tier. One coding judgement recurs through all five, whether
+a study with several applicable records counts as controlled when one of them reports a control or only
+when all do; it moves the controlled count from \Fattribany{} to \Fattribcons{} of \Fattribstud{}
+study--statement pairs.
+
 \input{tables/tab_statements}
 
 The five subsections below give the evidence behind the five conclusions of
